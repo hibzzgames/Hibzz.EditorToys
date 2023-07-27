@@ -1,0 +1,15 @@
+{
+    "name": "com.hibzz.editortoys",
+    "rootNamespace": "Hibzz.EditorToys",
+    "references": [],
+    "includePlatforms": [
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
