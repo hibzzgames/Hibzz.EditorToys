@@ -3,6 +3,7 @@
     "rootNamespace": "Hibzz.EditorToys",
     "references": [],
     "includePlatforms": [
+        "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
