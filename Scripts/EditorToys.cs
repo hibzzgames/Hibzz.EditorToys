@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -25,6 +27,10 @@ namespace Hibzz
         {
             lastTimeSinceStartup = EditorApplication.timeSinceStartup;
             EditorApplication.update += EditorToysUpdate;
+
+            // create the instance of the object at runtime and add hooks to it
+            var hooks = EditorToysHooks.Instance; // cheap way to create the object
+            EditorToysHooks.OnGuiHandler += PrintQueueOnGui;
         }
 
         /// <summary>
@@ -41,3 +47,5 @@ namespace Hibzz
         }
     }
 }
+
+#endif

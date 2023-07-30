@@ -1,10 +1,10 @@
 {
     "name": "com.hibzz.editortoys",
     "rootNamespace": "Hibzz.EditorToys",
-    "references": [],
-    "includePlatforms": [
-        "Editor"
+    "references": [
+        "GUID:b2fef9eae29790340a713d8578864b00"
     ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

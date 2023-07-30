@@ -10,5 +10,8 @@
   },
   "documentationUrl": "https://github.com/hibzzgames/Hibzz.EditorToys/blob/main/README.md",
   "changelogUrl": "https://github.com/hibzzgames/Hibzz.EditorToys/commits/",
-  "licensesUrl": "https://github.com/hibzzgames/Hibzz.EditorToys/blob/main/LICENSE.md"
+  "licensesUrl": "https://github.com/hibzzgames/Hibzz.EditorToys/blob/main/LICENSE.md",
+  "git-dependencies": [
+    "https://github.com/hibzzgames/Hibzz.Singletons.git"
+  ]
 }
