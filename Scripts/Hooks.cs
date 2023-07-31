@@ -3,18 +3,19 @@ using UnityEngine;
 
 namespace Hibzz
 {
-    // This is mostly a function for internal use only, however, if you wish to
-    // use it for any purpose, please thread carefully on how you incorporate
-    // it into your code. This system isn't battle tested.
+    // This is mostly a function for internal editor use only, however, if you
+    // wish to use it for any other purpose, please thread carefully on how you
+    // incorporate it into your code. This system isn't battle tested.
 
     // How does this system work?
-    // Since its not possible to directly subscribe to the unity events, I
+    // Since its not possible to directly subscribe to the unity game events, I
     // created this system to subscribe to those events. The hooks are made
-    // possible because when the editor loads, we create a new gameobject with
-    // a singleton monobehavior in it that'll recieve the event calls from
-    // Unity using the functions we know. The gameobject is hidden from the
-    // end user, doesn't get saved to the scene and doesn't get destroyed by
-    // the editor, so it's lifetime is temporary.
+    // possible because when the editor loads, the system creates a new
+    // gameobject with a singleton monobehavior in it that'll recieve the event
+    // calls from Unity using the functions we know and route it to the
+    // delegates. The gameobject is hidden from the end user, doesn't get saved
+    // to the scene and doesn't get destroyed by the editor, so it's lifetime
+    // is temporary.
 
     // It's kinda icky to do this, but I can't think of another way to
     // subscribe to those events. I had to make this entire package "non-editor"
@@ -26,9 +27,15 @@ namespace Hibzz
     // at editor time as well. If unity supports that, that would make my life
     // a lot more easier.
 
-    // So, although possible, please don't use this system at runtime. And
-    // please, don't call EditorToyHooks.Instance at runtime. I have no idea
-    // how it'll behave. Use it at your own risk.
+    // I have no idea how this system will behave at runtime, so I'm blocking
+    // the creation of the object when the Instance property is accessed at
+    // runtime. However, if you wish to experiment using the hooks for the
+    // various systems in your game, please manually add the EditorToysHooks as
+    // a component to a gameobject in the scene using some script. This would
+    // prove your intent to use the system at runtime and prevent any
+    // accidental creation of the object. Then, accessing the Instance variable
+    // would work as expected and the static delegates will start firing the
+    // events.
 
     [ExecuteAlways]
     [AddComponentMenu("")]
@@ -41,12 +48,20 @@ namespace Hibzz
 
         protected static new EditorToysHooks CreateNewInstance()
         {
+            #if UNITY_EDITOR
+
             // add a new object to the scene representing an editor hook
             var editorHookObject = new GameObject("Editor Hook Object");
             editorHookObject.hideFlags = HideFlags.HideAndDontSave;
 
             // add the hook as a component to the scene
             return editorHookObject.AddComponent<EditorToysHooks>();
+            
+            #else
+
+            return null;
+
+            #endif
         }
 
         // invoke the static event when on gui is called

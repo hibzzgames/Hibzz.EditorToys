@@ -25,11 +25,14 @@ namespace Hibzz
         [InitializeOnLoadMethod]
         private static void InitializeEditorToys()
         {
+            // initialize variable required to calculate editor delta time and
+            // subscribe to the editor update event
             lastTimeSinceStartup = EditorApplication.timeSinceStartup;
             EditorApplication.update += EditorToysUpdate;
 
             // create the instance of the object at runtime and add hooks to it
-            var hooks = EditorToysHooks.Instance; // cheap way to create the object
+            // accessing the instance property is a cheap way to create the object
+            var hooks = EditorToysHooks.Instance;
             EditorToysHooks.OnGuiHandler += PrintQueueOnGui;
         }
 

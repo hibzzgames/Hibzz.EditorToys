@@ -26,7 +26,7 @@ namespace Hibzz
         /// <summary>
         /// The default gui style for the print to screen tool
         /// </summary>
-        private static GUIStyle guiStyle = new GUIStyle() { 
+        private static GUIStyle printGuiStyle = new GUIStyle() { 
             richText = true,
             normal = new GUIStyleState()
             {
@@ -74,7 +74,7 @@ namespace Hibzz
         private static void PrintQueueOnGui()
         {
             if(string.IsNullOrWhiteSpace(textToPrint)) { return; }
-            GUI.Label(new Rect(10,10,Screen.width, Screen.height), textToPrint, guiStyle);
+            GUI.Label(new Rect(10,10,Screen.width, Screen.height), textToPrint, printGuiStyle);
         } 
 
         #endif
