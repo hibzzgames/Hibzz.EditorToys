@@ -44,8 +44,19 @@ namespace Hibzz
         // a delegate representing callback from the hooks
         public delegate void CallbackFunction();
 
+        // callback called when the Start event is invoked
+        public static CallbackFunction OnStartHandler;
+
+        // callback called when the OnGui event is invoked
         public static CallbackFunction OnGuiHandler;
 
+        // callback called when the hook is updated
+        public static CallbackFunction UpdateHandler;
+
+        // callback called when the editor hook is destroyed
+        public static CallbackFunction HookDestroyHandler;
+
+        // override the default create instance functionality with a new one
         protected static new EditorToysHooks CreateNewInstance()
         {
             #if UNITY_EDITOR
@@ -55,7 +66,7 @@ namespace Hibzz
             editorHookObject.hideFlags = HideFlags.HideAndDontSave;
 
             // add the hook as a component to the scene
-            return editorHookObject.AddComponent<EditorToysHooks>();
+            return editorHookObject.AddComponent<EditorToysHooks>(); 
             
             #else
 
@@ -64,10 +75,29 @@ namespace Hibzz
             #endif
         }
 
-        // invoke the static event when on gui is called
+        // invoke the static event when Start is called
+        void Start()
+        {
+            OnStartHandler?.Invoke();
+        }
+
+        // invoke the static event when OnGui is called
         void OnGUI()
         {
             OnGuiHandler?.Invoke();
+        }
+
+        // invoke the static event when Update is called
+        void Update()
+        {
+            UpdateHandler?.Invoke();
+        }
+
+        // invoke the static event when OnDestroy is called
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            HookDestroyHandler?.Invoke();
         }
     }
 }

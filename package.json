@@ -1,6 +1,6 @@
 {
   "name": "com.hibzz.editortoys",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "displayName": "hibzz.editortoys",
   "description": "This package contains a small set of helpful editor utilities to improve the game development workflow",
   "author": {

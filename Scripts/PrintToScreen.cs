@@ -112,7 +112,7 @@ namespace Hibzz
         public static void PrintToScreen(string text, float duration)
         {
             // The default color is white
-            PrintToScreen(text, duration, Color.white);
+            PrintToScreen(text, duration, Color.white); 
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Hibzz
         /// <param name="color">The color of the text as it gets printed</param>
         public static void PrintToScreen(string text, float duration, Color color)
         {
-            #if UNITY_EDITOR
+            #if UNITY_EDITOR 
 
             // interpolate string based on the color
             text = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>";

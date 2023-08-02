@@ -28,12 +28,15 @@ namespace Hibzz
             // initialize variable required to calculate editor delta time and
             // subscribe to the editor update event
             lastTimeSinceStartup = EditorApplication.timeSinceStartup;
-            EditorApplication.update += EditorToysUpdate;
+            EditorApplication.update += EditorToysUpdate; 
 
             // create the instance of the object at runtime and add hooks to it
             // accessing the instance property is a cheap way to create the object
             var hooks = EditorToysHooks.Instance;
             EditorToysHooks.OnGuiHandler += PrintQueueOnGui;
+
+            // remove all hooks when the hook object is destroyed
+            EditorToysHooks.HookDestroyHandler += RemoveSelfFromEditorHook;
         }
 
         /// <summary>
@@ -47,6 +50,12 @@ namespace Hibzz
 
             // call update for other editor tools
             PrintQueueUpdate();
+        }
+
+        private static void RemoveSelfFromEditorHook()
+        {
+            EditorToysHooks.OnGuiHandler  -= PrintQueueOnGui;
+            EditorToysHooks.HookDestroyHandler -= RemoveSelfFromEditorHook;
         }
     }
 }
