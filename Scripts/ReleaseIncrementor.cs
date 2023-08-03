@@ -1,4 +1,4 @@
-// This file contains the code for the ReleaseIncrementer functions
+// This file contains the code for the ReleaseIncrementor functions
 
 #if UNITY_EDITOR
 
@@ -11,9 +11,9 @@ namespace Hibzz
 {
     public static partial class EditorToys
     {
-        internal class ReleaseIncrementer : IPreprocessBuildWithReport
+        internal class ReleaseIncrementor : IPreprocessBuildWithReport
         {
-            const string MENU_KEY = "Hibzz/Editor Toys/Release Incrementer";
+            const string MENU_KEY = "Hibzz/Editor Toys/Release Incrementor";
 
             public int callbackOrder => 0;
 
@@ -48,7 +48,7 @@ namespace Hibzz
             }
 
             [MenuItem(MENU_KEY)]
-            static void ToggleReleaseIncrementer()
+            static void ToggleReleaseIncrementor()
             {
                 Menu.SetChecked(MENU_KEY, !Menu.GetChecked(MENU_KEY));
             }
