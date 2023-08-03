@@ -47,14 +47,17 @@ namespace Hibzz
         // callback called when the Start event is invoked
         public static CallbackFunction OnStartHandler;
 
-        // callback called when the OnGui event is invoked
-        public static CallbackFunction OnGuiHandler;
-
         // callback called when the hook is updated
         public static CallbackFunction UpdateHandler;
 
         // callback called when the editor hook is destroyed
         public static CallbackFunction HookDestroyHandler;
+
+        // callback called when the OnGui event is invoked 
+        public static CallbackFunction OnGuiHandler;
+
+        // callback called when the OnDrawGizmo event is invoked
+        public static CallbackFunction OnDrawGizmoHandler;
 
         // override the default create instance functionality with a new one
         protected static new EditorToysHooks CreateNewInstance()
@@ -81,11 +84,6 @@ namespace Hibzz
             OnStartHandler?.Invoke();
         }
 
-        // invoke the static event when OnGui is called
-        void OnGUI()
-        {
-            OnGuiHandler?.Invoke();
-        }
 
         // invoke the static event when Update is called
         void Update()
@@ -98,6 +96,18 @@ namespace Hibzz
         {
             base.OnDestroy();
             HookDestroyHandler?.Invoke();
+        }
+
+        // invoke the static event when OnGui is called
+        void OnGUI()
+        {
+            OnGuiHandler?.Invoke();
+        }
+
+        // on draw gizmo
+        void OnDrawGizmos()
+        {
+            OnDrawGizmoHandler?.Invoke();
         }
     }
 }

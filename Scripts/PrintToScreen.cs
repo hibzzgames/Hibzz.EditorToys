@@ -24,6 +24,11 @@ namespace Hibzz
         private static string textToPrint = "";
 
         /// <summary>
+        /// let's the system know that print to screen requires a refresh
+        /// </summary>
+        private static bool requiresRefresh = false;
+
+        /// <summary>
         /// The default gui style for the print to screen tool
         /// </summary>
         private static GUIStyle printGuiStyle = new GUIStyle() { 
@@ -43,7 +48,32 @@ namespace Hibzz
             textToPrint = "";
 
             // early exit if the print queue is empty
-            if (printQueue.Count <= 0) { return; }
+            if (printQueue.Count <= 0) 
+            {
+                // There's a special case where the text has been set to be
+                // empty because there's nothing on the queue. However, because
+                // of how this early exit code is done to optimize unnecessary
+                // calls, it would not invoke the ongui event manually. So, the
+                // last text that was printed to the screen would stay there
+                // until something on the scene changes. To account for that, a
+                // boolean "requiresRefresh" is introduced as a flag which lets
+                // the system know to queue the player update loop on the
+                // editor so the on gui event is called refreshing the text
+                if (requiresRefresh)
+                {
+                    // look down a couple of blocks on why this is required
+                    if (!Application.isPlaying)
+                    {
+                        EditorApplication.QueuePlayerLoopUpdate();
+                    }
+
+                    // since the refresh was done, no longer need to do it
+                    // multiple times
+                    requiresRefresh = false;
+                }
+
+                return; 
+            }
 
             // loop through everything in the print queue and gathering content
             // additionally, decrement duration
@@ -69,8 +99,16 @@ namespace Hibzz
             {
                 EditorApplication.QueuePlayerLoopUpdate();
             }
+
+            // ask the system to refresh gui to account for one special case,
+            // where the queue is empty but still requires one last refresh
+            // when the application is in editor mode
+            requiresRefresh = true;
         }
 
+        /// <summary>
+        /// Perform the actual print to screen using the GUI.Label 
+        /// </summary>
         private static void PrintQueueOnGui()
         {
             if(string.IsNullOrWhiteSpace(textToPrint)) { return; }
