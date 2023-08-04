@@ -10,9 +10,9 @@ namespace Hibzz
 {
     public static class ScriptableObjectCreator
     {
-        const string MENU_KEY = "Assets/Create Scriptable Object Instance";
+        const string MENU_KEY = "Assets/Create/Scriptable Object Instance";
 
-        [MenuItem(MENU_KEY)]
+        [MenuItem(MENU_KEY, priority = 120)]
         private static void CreateScriptableObject()
         {
             // not going to do any validation at the moment because of the
