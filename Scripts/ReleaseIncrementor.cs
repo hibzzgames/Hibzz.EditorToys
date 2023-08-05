@@ -17,10 +17,17 @@ namespace Hibzz
 
             public int callbackOrder => 0;
 
-            public void OnPreprocessBuild(BuildReport report)
+            [InitializeOnLoadMethod]
+            public static void Initialize()
+            {
+                // ISSUE: doesn't work when it's first called when the editor is launched
+                Menu.SetChecked(MENU_KEY, EditorPrefs.GetBool(MENU_KEY, false));
+            }
+
+            public void OnPreprocessBuild(BuildReport report) 
             {
                 // only execute the tool's code if it was enabled
-                if (!Menu.GetChecked(MENU_KEY)) { return; }
+                if (!EditorPrefs.GetBool(MENU_KEY, false)) { return; }
 
                 // Ask the user if they want to increment the release version
                 // A response of "1" means the user decided to not increment the release version
@@ -50,7 +57,8 @@ namespace Hibzz
             [MenuItem(MENU_KEY)]
             static void ToggleReleaseIncrementor()
             {
-                Menu.SetChecked(MENU_KEY, !Menu.GetChecked(MENU_KEY));
+                Menu.SetChecked(MENU_KEY, !EditorPrefs.GetBool(MENU_KEY, false));
+                EditorPrefs.SetBool(MENU_KEY, Menu.GetChecked(MENU_KEY));
             }
         }
     }
