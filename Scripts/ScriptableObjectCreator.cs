@@ -1,12 +1,10 @@
 #if UNITY_EDITOR
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-namespace Hibzz
+namespace Hibzz.EditorToys
 {
     public static class ScriptableObjectCreator
     {
@@ -37,11 +35,11 @@ namespace Hibzz
         {
             // selected object must be a monobehavior script
             var monoscript = Selection.activeObject as MonoScript;
-            if(monoscript is null) { return false; }
+            if (monoscript is null) { return false; }
 
             // selected monobehavior script must be derived from ScriptableObject
             var class_type = monoscript.GetClass();
-            if(!class_type.IsSubclassOf(typeof(ScriptableObject))) { return false; }
+            if (!class_type.IsSubclassOf(typeof(ScriptableObject))) { return false; }
 
             // all checks passed, the selection is valid
             return true;

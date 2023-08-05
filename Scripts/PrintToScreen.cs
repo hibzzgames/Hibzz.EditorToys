@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace Hibzz
+namespace Hibzz.EditorToys
 {
     public static partial class EditorToys
     {
@@ -31,7 +31,8 @@ namespace Hibzz
         /// <summary>
         /// The default gui style for the print to screen tool
         /// </summary>
-        private static GUIStyle printGuiStyle = new GUIStyle() { 
+        private static GUIStyle printGuiStyle = new GUIStyle()
+        {
             richText = true,
             normal = new GUIStyleState()
             {
@@ -48,7 +49,7 @@ namespace Hibzz
             textToPrint = "";
 
             // early exit if the print queue is empty
-            if (printQueue.Count <= 0) 
+            if (printQueue.Count <= 0)
             {
                 // There's a special case where the text has been set to be
                 // empty because there's nothing on the queue. However, because
@@ -72,12 +73,12 @@ namespace Hibzz
                     requiresRefresh = false;
                 }
 
-                return; 
+                return;
             }
 
             // loop through everything in the print queue and gathering content
             // additionally, decrement duration
-            foreach(var data in printQueue)
+            foreach (var data in printQueue)
             {
                 textToPrint += $"{data.Text}\n";
                 data.Duration -= EditorDeltaTime;
@@ -95,7 +96,7 @@ namespace Hibzz
             // probably be a bit more efficient and conservative with how
             // frequently this call is made, but that's something I want to
             // think about later.
-            if(!Application.isPlaying)
+            if (!Application.isPlaying)
             {
                 EditorApplication.QueuePlayerLoopUpdate();
             }
@@ -111,9 +112,9 @@ namespace Hibzz
         /// </summary>
         private static void PrintQueueOnGui()
         {
-            if(string.IsNullOrWhiteSpace(textToPrint)) { return; }
-            GUI.Label(new Rect(10,10,Screen.width, Screen.height), textToPrint, printGuiStyle);
-        } 
+            if (string.IsNullOrWhiteSpace(textToPrint)) { return; }
+            GUI.Label(new Rect(10, 10, Screen.width, Screen.height), textToPrint, printGuiStyle);
+        }
 
         #endif
 
@@ -150,7 +151,7 @@ namespace Hibzz
         public static void PrintToScreen(string text, float duration)
         {
             // The default color is white
-            PrintToScreen(text, duration, Color.white); 
+            PrintToScreen(text, duration, Color.white);
         }
 
         /// <summary>
@@ -166,7 +167,7 @@ namespace Hibzz
         /// <param name="color">The color of the text as it gets printed</param>
         public static void PrintToScreen(string text, float duration, Color color)
         {
-            #if UNITY_EDITOR 
+            #if UNITY_EDITOR
 
             // interpolate string based on the color
             text = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>";
