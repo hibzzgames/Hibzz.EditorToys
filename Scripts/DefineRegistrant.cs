@@ -24,6 +24,24 @@ namespace Hibzz.EditorToys
 
             return data;
         }
+
+        [RegisterDefine]
+        static DefineRegistrationData RegisterReleaseIncrementor()
+        {
+            DefineRegistrationData data = new DefineRegistrationData();
+
+            data.Define = "DISABLE_RELEASE_INCREMENTOR";
+            data.DisplayName = "Disable Release Incrementor";
+            data.Category = Category;
+            data.EnableByDefault = false;
+            data.Description = "The Release Incrementor, when enabled, prompts " +
+                "the user to increase the version number of the application " +
+                "(the patch or the minor number) when the user creates a new " +
+                "build.\n\n" +
+                "Installing this define disables the Release Incrementor.";
+
+            return data;
+        }
     }
 }
 
