@@ -1,6 +1,6 @@
 // This file contains the code for the ReleaseIncrementor functions
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !DISABLE_RELEASE_INCREMENTOR
 
 using UnityEditor;
 using UnityEditor.Build;
