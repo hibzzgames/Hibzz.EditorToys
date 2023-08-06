@@ -1,4 +1,5 @@
 // This file contains the code for the PrintToScreen Functions
+#if !DISABLE_PRINT_TO_SCREEN
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -195,3 +196,5 @@ namespace Hibzz.EditorToys
         }
     }
 }
+
+#endif
