@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+#if UNITY_EDITOR && !DISABLE_SCRIPTABLE_OBJECT_CREATOR
 
 using UnityEngine;
 using UnityEditor;

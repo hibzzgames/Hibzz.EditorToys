@@ -42,6 +42,24 @@ namespace Hibzz.EditorToys
 
             return data;
         }
+
+        [RegisterDefine]
+        static DefineRegistrationData RegisterScriptableObjectCreator()
+        {
+            DefineRegistrationData data = new DefineRegistrationData();
+
+            data.Define = "DISABLE_SCRIPTABLE_OBJECT_CREATOR";
+            data.DisplayName = "Disable Scriptable Object Creator";
+            data.Category = Category;
+            data.EnableByDefault = false;
+            data.Description = "The Scriptable Object Creator is a utility that " +
+                "lets users right click on a script file that contains a class " +
+                "that inherits ScriptableObject and create new scriptable " +
+                "object instance without any other additional menu items.\n\n" +
+                "Installing this define disables the Scriptable Object Creator";
+
+            return data;
+        }
     }
 }
 
