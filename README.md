@@ -47,7 +47,7 @@ EditorToys.PrintToScreen("Hello World!", 5f, Color.red); // prints "Hello World!
 
 ### Release Incrementor
 
-*// todo: add a screenshot*
+![release-incrementor](https://github.com/hibzzgames/Hibzz.EditorToys/assets/37605842/6ada618e-7f0a-418b-938d-9023a972fc36)
 
 The Release Incrementor prompts the users to increment the version number of the project when creating a new build. With a press of a button, users will be able to increment the patch or minor version number of the project. This tool can be enabled from the `Hibzz > Editor Toys > Release Incrementor` menu.
 
