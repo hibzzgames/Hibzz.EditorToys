@@ -9,14 +9,18 @@ using UnityEditor;
 
 namespace Hibzz.EditorToys
 {
-    public static partial class EditorToys
-    {
-        #if UNITY_EDITOR
+    #if UNITY_EDITOR
 
+    /// <summary>
+    /// Contains code that manages the print queue required for 
+    /// EditorToys.PrintToScreen functions to work
+    /// </summary>
+    internal static class PrintQueue
+    {
         /// <summary>
         /// A list of text content that needs to be displayed on screen along with the duration for which they must be displayed
         /// </summary>
-        private static List<PrintData> printQueue = new List<PrintData>();
+        internal static List<PrintData> Queue = new List<PrintData>();
 
         /// <summary>
         /// The cumulative text to print
@@ -31,7 +35,7 @@ namespace Hibzz.EditorToys
         /// <summary>
         /// The default gui style for the print to screen tool
         /// </summary>
-        private static GUIStyle printGuiStyle = new GUIStyle()
+        private static GUIStyle guiStyle = new GUIStyle()
         {
             richText = true,
             normal = new GUIStyleState()
@@ -43,13 +47,13 @@ namespace Hibzz.EditorToys
         /// <summary>
         /// Called once every editor update
         /// </summary>
-        private static void PrintQueueUpdate()
+        internal static void Update()
         {
             // on update we reset what text needs to be printed
             textToPrint = "";
 
             // early exit if the print queue is empty
-            if (printQueue.Count <= 0)
+            if (Queue.Count <= 0)
             {
                 // There's a special case where the text has been set to be
                 // empty because there's nothing on the queue. However, because
@@ -78,14 +82,14 @@ namespace Hibzz.EditorToys
 
             // loop through everything in the print queue and gathering content
             // additionally, decrement duration
-            foreach (var data in printQueue)
+            foreach (var data in Queue)
             {
                 textToPrint += $"{data.Text}\n";
-                data.Duration -= EditorDeltaTime;
+                data.Duration -= EditorToys.EditorDeltaTime;
             }
 
             // remove all data whose whose duration has elapsed
-            printQueue.RemoveAll((data) => data.Duration < 0);
+            Queue.RemoveAll((data) => data.Duration < 0);
 
             // when in editor mode, according to the documentation, the OnGui
             // function doesn't get called every frame, instead, only when
@@ -110,14 +114,26 @@ namespace Hibzz.EditorToys
         /// <summary>
         /// Perform the actual print to screen using the GUI.Label 
         /// </summary>
-        private static void PrintQueueOnGui()
+        internal static void OnGui()
         {
             if (string.IsNullOrWhiteSpace(textToPrint)) { return; }
-            GUI.Label(new Rect(10, 10, Screen.width, Screen.height), textToPrint, printGuiStyle);
+            GUI.Label(new Rect(10, 10, Screen.width, Screen.height), textToPrint, guiStyle);
         }
 
-        #endif
+        /// <summary>
+        /// A class representing the data that needs to be printed along with any other required information
+        /// </summary>
+        internal class PrintData
+        {
+            public string Text;
+            public float Duration;
+        }
+    }
 
+    #endif
+
+    public static partial class EditorToys
+    {
         /// <summary>
         /// Prints the given text to the screen for a single frame
         /// </summary>
@@ -173,22 +189,9 @@ namespace Hibzz.EditorToys
             text = $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>";
 
             // add the given content to the queue
-            printQueue.Add(new PrintData { Text = text, Duration = duration });
+            PrintQueue.Queue.Add(new PrintQueue.PrintData { Text = text, Duration = duration });
 
             #endif
         }
-
-        #if UNITY_EDITOR
-
-        /// <summary>
-        /// A class representing the data that needs to be printed along with any other required information
-        /// </summary>
-        private class PrintData
-        {
-            public string Text;
-            public float Duration;
-        }
-
-        #endif
     }
 }

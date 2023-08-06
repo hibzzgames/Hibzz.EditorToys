@@ -30,7 +30,7 @@ namespace Hibzz.EditorToys
             // create the instance of the object at runtime and add hooks to it
             // accessing the instance property is a cheap way to create the object
             var hooks = EditorToysHooks.Instance;
-            EditorToysHooks.OnGuiHandler += PrintQueueOnGui;
+            EditorToysHooks.OnGuiHandler += PrintQueue.OnGui;
 
             // remove all hooks when the hook object is destroyed
             EditorToysHooks.HookDestroyHandler += RemoveSelfFromEditorHook;
@@ -46,12 +46,12 @@ namespace Hibzz.EditorToys
             lastTimeSinceStartup = EditorApplication.timeSinceStartup;
 
             // call update for other editor tools
-            PrintQueueUpdate();
+            PrintQueue.Update();
         }
 
         private static void RemoveSelfFromEditorHook()
         {
-            EditorToysHooks.OnGuiHandler -= PrintQueueOnGui;
+            EditorToysHooks.OnGuiHandler -= PrintQueue.OnGui;
             EditorToysHooks.HookDestroyHandler -= RemoveSelfFromEditorHook;
         }
     }
