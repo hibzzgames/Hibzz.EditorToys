@@ -1,11 +1,8 @@
 #if UNITY_EDITOR
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
-namespace Hibzz
+namespace Hibzz.EditorToys
 {
     public static partial class EditorToys
     {
@@ -28,12 +25,12 @@ namespace Hibzz
             // initialize variable required to calculate editor delta time and
             // subscribe to the editor update event
             lastTimeSinceStartup = EditorApplication.timeSinceStartup;
-            EditorApplication.update += EditorToysUpdate; 
+            EditorApplication.update += EditorToysUpdate;
 
             // create the instance of the object at runtime and add hooks to it
             // accessing the instance property is a cheap way to create the object
             var hooks = EditorToysHooks.Instance;
-            EditorToysHooks.OnGuiHandler += PrintQueueOnGui;
+            EditorToysHooks.OnGuiHandler += PrintQueue.OnGui;
 
             // remove all hooks when the hook object is destroyed
             EditorToysHooks.HookDestroyHandler += RemoveSelfFromEditorHook;
@@ -45,16 +42,16 @@ namespace Hibzz
         private static void EditorToysUpdate()
         {
             // calculate the editor delta time
-            EditorDeltaTime = (float) (EditorApplication.timeSinceStartup - lastTimeSinceStartup);
+            EditorDeltaTime = (float)(EditorApplication.timeSinceStartup - lastTimeSinceStartup);
             lastTimeSinceStartup = EditorApplication.timeSinceStartup;
 
             // call update for other editor tools
-            PrintQueueUpdate();
+            PrintQueue.Update();
         }
 
         private static void RemoveSelfFromEditorHook()
         {
-            EditorToysHooks.OnGuiHandler  -= PrintQueueOnGui;
+            EditorToysHooks.OnGuiHandler -= PrintQueue.OnGui;
             EditorToysHooks.HookDestroyHandler -= RemoveSelfFromEditorHook;
         }
     }

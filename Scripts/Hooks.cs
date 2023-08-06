@@ -1,7 +1,7 @@
 using Hibzz.Singletons;
 using UnityEngine;
 
-namespace Hibzz
+namespace Hibzz.EditorToys
 {
     // This is mostly a function for internal editor use only, however, if you
     // wish to use it for any other purpose, please thread carefully on how you
@@ -69,8 +69,8 @@ namespace Hibzz
             editorHookObject.hideFlags = HideFlags.HideAndDontSave;
 
             // add the hook as a component to the scene
-            return editorHookObject.AddComponent<EditorToysHooks>(); 
-            
+            return editorHookObject.AddComponent<EditorToysHooks>();
+
             #else
 
             return null;
