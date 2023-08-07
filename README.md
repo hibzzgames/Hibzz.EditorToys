@@ -3,8 +3,6 @@
 
 ***This package contains a small set of helpful editor utilities to improve the game development workflow***
 
-> This package is in it's alpha stage and in active development. This repo has been made public as a preview.
-
 <br>
 
 ## Installation
@@ -15,6 +13,12 @@ https://github.com/hibzzgames/Hibzz.EditorToys.git
 ```
 
 Alternatively, you can download the latest release from the [releases page](https://github.com/hibzzgames/Hibzz.EditorToys/releases) and manually import the package into your project.
+
+<br>
+
+### Dependencies
+This package requires the following dependencies. It can be automatically installed using the [Hibzz.DependencyResolver](https://github.com/hibzzgames/Hibzz.DependencyResolver) package or the following can be manually installed.
+- [Hibzz.Singletons](https://github.com/hibzzgames/Hibzz.Singletons)
 
 <br>
 
