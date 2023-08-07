@@ -20,9 +20,9 @@ Alternatively, you can download the latest release from the [releases page](http
 
 ## Tools
 The following tools are currently available:
-- [Print To Screen](https://github.com/hibzzgames/Hibzz.EditorToys/edit/master/README.md#print-to-screen)
-- [Release Incrementor](https://github.com/hibzzgames/Hibzz.EditorToys/edit/master/README.md#release-incrementor)
-- [Scriptable Object Creator](https://github.com/hibzzgames/Hibzz.EditorToys/edit/master/README.md#scriptable-object-creator)
+- [Print To Screen](https://github.com/hibzzgames/Hibzz.EditorToys/#print-to-screen)
+- [Release Incrementor](https://github.com/hibzzgames/Hibzz.EditorToys/#release-incrementor)
+- [Scriptable Object Creator](https://github.com/hibzzgames/Hibzz.EditorToys/#scriptable-object-creator)
 
 <br>
 
