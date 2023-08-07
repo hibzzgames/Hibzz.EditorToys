@@ -55,8 +55,8 @@ The Release Incrementor prompts the users to increment the version number of the
 <br>
 
 ### Scriptable Object Creator
+<img src="https://github.com/hibzzgames/Hibzz.EditorToys/assets/37605842/b0dbbb77-4dc2-4a51-aece-f85e2133a84d" width="50%">
 
-*// todo: add a screenshot*
 
 The Scriptable Object Creator allows users to create a new instance of a scriptable object directly by opening the context menu on a script file that inherits from `ScriptableObject`. This lets users avoid having to create a unique menu item for each scriptable object type they create reducing the clutter in the Unity Editor and improving the workflow. 
 
