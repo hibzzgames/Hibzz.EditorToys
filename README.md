@@ -28,7 +28,8 @@ The following tools are currently available:
 
 ### Print To Screen
 
-*// todo: add a screenshot*
+![printtoscreen](https://github.com/hibzzgames/Hibzz.EditorToys/assets/37605842/0e6ff149-803d-48c5-901f-1cb11b9c02d2)
+
 
 `PrintToScreen` is a simple tool that allows users to print a message to the screen for a specified duration. This is very useful for real-time debugging and testing. The tool can be further customized by specifying the color of the text.
 
@@ -55,7 +56,7 @@ The Release Incrementor prompts the users to increment the version number of the
 <br>
 
 ### Scriptable Object Creator
-<img src="https://github.com/hibzzgames/Hibzz.EditorToys/assets/37605842/b0dbbb77-4dc2-4a51-aece-f85e2133a84d" width="50%">
+<img src="https://github.com/hibzzgames/Hibzz.EditorToys/assets/37605842/b0dbbb77-4dc2-4a51-aece-f85e2133a84d" width="70%">
 
 
 The Scriptable Object Creator allows users to create a new instance of a scriptable object directly by opening the context menu on a script file that inherits from `ScriptableObject`. This lets users avoid having to create a unique menu item for each scriptable object type they create reducing the clutter in the Unity Editor and improving the workflow. 
